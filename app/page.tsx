@@ -167,7 +167,6 @@ export default function SurrealAnarchyPage() {
           className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
             backgroundImage: "radial-gradient(#10b981 1px, transparent 1px)",
-            size: "40px 40px",
             backgroundSize: "30px 30px",
           }}
         ></div>
