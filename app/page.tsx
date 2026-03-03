@@ -108,8 +108,10 @@ export default function SurrealAnarchyPage() {
             {/* Текстовый блок 1 */}
             <div className="col-span-12 lg:col-span-7 mb-20">
               <h2 className="text-7xl font-black uppercase mb-10 leading-none">
-                <span className="text-emerald-500 italic">BELLASPELA--</span>{" "}
-                <br /> Звук окраин.
+                <span className="text-emerald-500 italic text-6xl">
+                  BELLASPELA
+                </span>{" "}
+                <br /> Звук окраин
               </h2>
               <p className="text-3xl font-light leading-tight text-gray-400 max-w-2xl">
                 Я родился там, где заканчивается шумный Петербург и начинаются
