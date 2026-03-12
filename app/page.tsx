@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Heart, Zap, Eye, Command, Skull, ExternalLink } from "lucide-react";
-
+import Link from "next/link";
 // Компонент Глитч-текста
 const GlitchText = ({ text }: { text: string }) => (
   <div className="relative inline-block group">
@@ -25,17 +25,17 @@ const FloatingEye = () => {
       transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
       className="fixed right-10 top-1/2 z-[100] cursor-grab active:cursor-grabbing hidden lg:block"
     >
-      <div className="relative w-24 h-24 bg-white rounded-full border-4 border-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.5)] flex items-center justify-center overflow-hidden">
+      <div className="relative w-24 h-24 bg-white rounded-full border-4 border-yellow-300 shadow-[0_0_30px_rgba(16,185,129,0.5)] flex items-center justify-center overflow-hidden">
         <motion.div
           animate={{ x: [-5, 5, -5], y: [-5, 5, -5] }}
           transition={{ repeat: Infinity, duration: 2 }}
           className="w-10 h-10 bg-black rounded-full flex items-center justify-center"
         >
-          <div className="w-4 h-4 bg-emerald-400 rounded-full animate-pulse"></div>
+          <div className="w-4 h-4 bg-yellow-300 rounded-full animate-pulse"></div>
         </motion.div>
         <div className="absolute inset-0 bg-[url('https://media.giphy.com/media/oEI9uWUicG71S/giphy.gif')] opacity-20 mix-blend-overlay"></div>
       </div>
-      <div className="mt-2 text-center font-mono text-[10px] text-emerald-500 font-bold uppercase tracking-tighter">
+      <div className="mt-2 text-center font-mono text-[10px] yellow-300 font-bold uppercase tracking-tighter">
         всевидящее око
       </div>
     </motion.div>
@@ -62,7 +62,7 @@ export default function SurrealAnarchyPage() {
       <nav className="fixed top-0 left-0 w-full p-6 z-[90] flex justify-between items-start mix-blend-difference">
         <div></div>
         <div className="space-y-2 text-right">
-          <p className="text-[10px] tracking-[0.5em] text-emerald-400 uppercase">
+          <p className="text-[10px] tracking-[0.5em] text-yellow-300 uppercase">
             Статус: Восстание
           </p>
           <p className="text-[10px] tracking-[0.5em] uppercase">
@@ -78,7 +78,7 @@ export default function SurrealAnarchyPage() {
         <div
           className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: `XXXINLINECODEXXX1XXXINLINECODEXXX`,
+            backgroundImage: `radial-gradient(circle, #333 1px, transparent 1px)`,
             backgroundSize: "40px 40px",
           }}
         ></div>
@@ -86,80 +86,108 @@ export default function SurrealAnarchyPage() {
         {/* Градиентное затемнение по краям (Виньетка) */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]"></div>
 
+        <div className="absolute top-10 left-6 md:left-12 flex flex-col space-y-8 z-[100]">
+          <div className="relative flex flex-col space-y-6">
+            {/* Декоративная линия теперь не мешает кликам */}
+            <div className="absolute -left-2 top-0 w-[1px] h-full bg-white/10 pointer-events-none"></div>
+
+            {/* ORIGIN (ОБ АВТОРЕ) - ТЕПЕРЬ ВСЁ РАБОТАЕТ */}
+            <Link href="/aboutPage">
+              <motion.div
+                onClick={() => {
+                  console.log(5);
+                }}
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="group cursor-pointer relative z-50"
+              >
+                <div className="relative px-6 py-1 border-l-2 border-emerald-500 transition-all duration-300 group-hover:bg-emerald-500/20">
+                  <p className="font-mono text-[9px] text-emerald-500/60 uppercase tracking-tighter mb-1 pointer-events-none">
+                    01_Subject
+                  </p>
+                  <h2 className="text-white font-black uppercase tracking-[0.2em] text-lg group-hover:text-emerald-400 transition-colors pointer-events-none">
+                    ОБ АВТОРЕ
+                  </h2>
+                  {/* Свечение при наведении */}
+                  <div className="absolute inset-0 bg-emerald-500 opacity-0 group-hover:opacity-20 blur-xl transition-all duration-300 pointer-events-none"></div>
+                </div>
+              </motion.div>
+            </Link>
+            {/* DROP (МЕРЧ) - КОПИЯ ЛОГИКИ ORIGIN */}
+            <Link href="/shopPage">
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="group cursor-pointer relative z-50"
+              >
+                <div className="relative px-6 py-1 border-l-2 border-yellow-300 transition-all duration-300 group-hover:bg-yellow-300/20">
+                  <p className="font-mono text-[9px] text-yellow-300/60 uppercase tracking-tighter mb-1 pointer-events-none">
+                    02_Supply
+                  </p>
+                  <h2 className="text-white font-black uppercase tracking-[0.2em] text-lg group-hover:text-yellow-200 transition-colors pointer-events-none">
+                    МАГАЗИН
+                  </h2>
+                  {/* Свечение при наведении */}
+                  <div className="absolute inset-0 bg-yellow-300 opacity-0 group-hover:opacity-20 blur-xl transition-all duration-300 pointer-events-none"></div>
+                </div>
+              </motion.div>
+            </Link>
+          </div>
+
+          {/* Техническая инфа */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            transition={{ delay: 1.2 }}
+            className="flex flex-col space-y-1 pl-4 border-l border-white/5 pointer-events-none"
+          >
+            <div className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+              <p className="font-mono text-[8px] text-white tracking-[0.3em] uppercase">
+                ГОРЕЛОВО
+              </p>
+            </div>
+            <p className="font-mono text-[8px] text-white tracking-[0.3em] uppercase pl-3">
+              СТАБИЛЬНЫЙ СИГНАЛ
+            </p>
+          </motion.div>
+        </div>
+        {/* ЦЕНТРАЛЬНЫЙ ЛОГОТИП */}
         <div className="relative z-10 text-center">
           <motion.h1
-            initial={{ y: 50, opacity: 0 }}
+            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="text-[12vw] font-black uppercase italic leading-none text-white tracking-tighter"
+            transition={{ duration: 0.8 }}
+            className="text-[12vw] font-black  italic leading-none text-white tracking-tighter"
           >
-            BELLA
-            <span className="text-emerald-500 font-outline-2">SPELA</span>
+            bELLA
+            <span className="text-yellow-300 font-outline-2">SPELA</span>
           </motion.h1>
-          <p className="font-mono text-yellow-300 mt-4 tracking-[0.5em] uppercase text-sm">
-            Decoding Reality... 99% Complete
-          </p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <p className="font-mono text-yellow-300 mt-4 tracking-[0.5em] uppercase text-xs md:text-sm">
+              Расшифровка реальности... 99%
+            </p>
+          </motion.div>
+        </div>
+
+        {/* ПРАВЫЙ ВЕРХНИЙ УГОЛ (Версия софта) */}
+        <div className="absolute top-10 right-10 font-mono text-[9px] text-white/10 uppercase tracking-[0.4em] hidden md:block">
+          v.2026 // core_system
+        </div>
+
+        {/* ДЕКОРАТИВНЫЙ ПОДВАЛ */}
+        <div className="absolute bottom-10 left-10 right-10 flex justify-end font-mono text-[9px] text-white/20 tracking-widest uppercase">
+          <span>РОССИЯ, САНКТ-ПЕТЕРБУРГ</span>
         </div>
       </section>
       {/* СЕКЦИЯ: МАНИФЕСТ */}
       {/* SECTION: MANIFESTO (GLITCH TEXT) */}
-      <section className="relative py-40 bg-[#0a0a0a] text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-12 gap-6">
-            {/* Текстовый блок 1 */}
-            <div className="col-span-12 lg:col-span-7 mb-20">
-              <h2 className="text-7xl font-black uppercase mb-10 leading-none">
-                <span className="text-emerald-500 italic text-6xl">
-                  BELLASPELA
-                </span>{" "}
-                <br /> Звук окраин
-              </h2>
-              <p className="text-3xl font-light leading-tight text-gray-400 max-w-2xl">
-                Я родился там, где заканчивается шумный Петербург и начинаются
-                бесконечные поля Горелово.
-              </p>
-            </div>
-
-            {/* Картинка 1 (Большая) */}
-            <motion.div
-              whileInView={{ clipPath: "inset(0% 0% 0% 0%)" }}
-              initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-              transition={{ duration: 1 }}
-              className="col-span-12 lg:col-span-5 h-[500px] bg-zinc-900 overflow-hidden relative border border-emerald-500/30"
-            >
-              <img
-                src="https://sun9-66.userapi.com/s/v1/ig2/_HSlzp1PUCBr-PBwlD9Hrz7mPpdZ3hp21e9PtA8K1-TsC-Zi9wUmAv72VwOMdWtnfcZxLSgNvVa3xDb5Y2mf4jfF.jpg?quality=95&as=32x40,48x60,72x90,108x135,160x200,240x300,360x450,480x600,540x674,640x799,720x899,1080x1349&from=bu&cs=1080x0"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110 hover:scale-100"
-              />
-            </motion.div>
-
-            {/* Картинка 2 (Малая смещенная) */}
-            <div className="col-span-12 lg:col-span-4 lg:-mt-40 z-20">
-              <motion.div
-                whileHover={{ x: 10, y: -10 }}
-                className="h-80 bg-zinc-900 border-t-4 border-yellow-300 p-2"
-              >
-                <img
-                  src="https://avatars.mds.yandex.net/i?id=7f16ae78ad7b2777b3325b6ab152dcb9_sr-12475067-images-thumbs&n=13"
-                  className="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity"
-                />
-              </motion.div>
-            </div>
-
-            {/* Текстовый блок 2 (Манифест) */}
-            <div className="col-span-12 lg:col-span-8 space-y-10 mt-20">
-              <div className="flex gap-6 items-start">
-                <span className="text-emerald-500 font-mono text-2xl">[!]</span>
-                <p className="text-2xl font-mono text-gray-500">
-                  Моя музыка — это не парадные проспекты, а эстетика бетонных
-                  коробок, свет единственного фонаря во дворе и вечный туман над
-                  КАДом.
-                </p>
-              </div>
-              <div className="h-px w-full bg-gradient-to-r from-emerald-500 to-transparent"></div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* СЕКЦИЯ ССЫЛОК (Плавающие карточки) */}
       {/* SECTION: BEYOND THE VOID (LINKS REMASTERED) */}
@@ -182,7 +210,7 @@ export default function SurrealAnarchyPage() {
             <h2 className="text-7xl md:text-9xl font-black uppercase italic tracking-tighter leading-none">
               СВЯЗЬ_С
               <br />
-              <span className="text-emerald-500 underline decoration-yellow-300 underline-offset-8">
+              <span className="text-yellow-300 underline decoration-yellow-300 underline-offset-8">
                 ПУСТОТОЙ
               </span>
             </h2>
