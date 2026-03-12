@@ -120,7 +120,7 @@ const AboutSection = () => {
             {/* Оверлей сканера */}
 
             <img
-              src="./images/468AB6D7-D198-400C-8649-BFA5CB0723A4.jpg" // Убедись, что путь начинается с / если папка в public
+              src="./images/IMG_0555.JPG" // Убедись, что путь начинается с / если папка в public
               className="w-full h-full object-cover transition-all duration-1000  group-hover:scale-105"
               alt="Bellaspela Main"
             />
